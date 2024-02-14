@@ -28,6 +28,11 @@ function sectBackground(element) {
   elementd.classList.add('bg-orange-400');
 }
 
+function removeElemnt(element) {
+  const elementd = document.getElementById(element);
+  elementd.classList.remove('bg-orange-400');
+}
+
 //---------played section styel-------
 function playGround() {
   hiddenElement('playGround');
@@ -40,4 +45,35 @@ function contnuGames() {
   showAlohabetd.innerText = alpha;
 
   sectBackground(alpha);
+}
+//key upp section start
+
+function keyupSetin(event) {
+  const playerPast = event.key;
+
+  const showAlohabet = document.getElementById('showAlohabet');
+  const cruntAlohabeat = showAlohabet.innerText;
+  const exputAlphabet = cruntAlohabeat.toLowerCase();
+
+  if (playerPast === exputAlphabet) {
+    const scoredAddeds = document.getElementById('scoredAdded');
+    const scord = scoredAddeds.innerText;
+    const scordPrasint = parseInt(scord);
+    const sum = scordPrasint + 1;
+    scoredAddeds.innerText = sum;
+    removeElemnt(exputAlphabet);
+    contnuGames();
+  } else {
+    const curentLife = document.getElementById('curentLife');
+    const curentLifeds = curentLife.innerText;
+    const curenParestn = parseInt(curentLifeds);
+    const sumded = curenParestn - 1;
+    curentLife.innerText = sumded;
+    console.log('You lose the point');
+  }
+}
+document.addEventListener('keyup', keyupSetin);
+
+function scordAdd(event) {
+  event;
 }
