@@ -33,6 +33,48 @@ function removeElemnt(element) {
   elementd.classList.remove('bg-orange-400');
 }
 
+function addGetElementSum(event) {
+  const addedElement = document.getElementById(event);
+  const eventValue = addedElement.innerText;
+  const eventParsint = parseInt(eventValue);
+  return eventParsint;
+}
+function removeSumElemnt(curentLife) {
+  const curentLifed = document.getElementById(curentLife);
+  const curentLifeds = curentLifed.innerText;
+  const curenParestn = parseInt(curentLifeds);
+  return curenParestn;
+}
+
+function addElementValue(element, values) {
+  const elementVlaue = document.getElementById(element);
+  elementVlaue.innerText = values;
+}
+
+function gamesOvers() {
+  hiddenElement('playinged');
+  unHidddenElemnt('MainScored');
+
+  const lestScore = addGetElementSum('scoredAdded');
+  addElementValue('fainalScored', lestScore);
+}
+
+function playedAgian() {
+  hiddenElement('playGround');
+  hiddenElement('MainScored');
+  unHidddenElemnt('playinged');
+  addElementValue('curentLife', 5);
+  addElementValue('scoredAdded', 0);
+  const curentAlphabets = creatAlbpabet('curentAlphabet');
+  removeElemnt(curentAlphabets);
+  contnuGames();
+}
+
+function creatAlbpabet(element) {
+  const elements = document.getElementById(element);
+  const elementParsint = elements.innerText;
+  return elementParsint;
+}
 //---------played section styel-------
 function playGround() {
   hiddenElement('playGround');
@@ -50,30 +92,27 @@ function contnuGames() {
 
 function keyupSetin(event) {
   const playerPast = event.key;
-
+  if (playerPast === 'Escape') {
+    gamesOvers();
+  }
   const showAlohabet = document.getElementById('showAlohabet');
   const cruntAlohabeat = showAlohabet.innerText;
   const exputAlphabet = cruntAlohabeat.toLowerCase();
 
   if (playerPast === exputAlphabet) {
-    const scoredAddeds = document.getElementById('scoredAdded');
-    const scord = scoredAddeds.innerText;
-    const scordPrasint = parseInt(scord);
-    const sum = scordPrasint + 1;
-    scoredAddeds.innerText = sum;
+    const sumElemnt = addGetElementSum('scoredAdded');
+    const updetScore = sumElemnt + 1;
+
+    addElementValue('scoredAdded', updetScore);
     removeElemnt(exputAlphabet);
     contnuGames();
   } else {
-    const curentLife = document.getElementById('curentLife');
-    const curentLifeds = curentLife.innerText;
-    const curenParestn = parseInt(curentLifeds);
-    const sumded = curenParestn - 1;
-    curentLife.innerText = sumded;
-    console.log('You lose the point');
+    const removeElemnt = addGetElementSum('curentLife');
+    const updetScored = removeElemnt - 1;
+    addElementValue('curentLife', updetScored);
+    if (updetScored === 0) {
+      gamesOvers();
+    }
   }
 }
 document.addEventListener('keyup', keyupSetin);
-
-function scordAdd(event) {
-  event;
-}
